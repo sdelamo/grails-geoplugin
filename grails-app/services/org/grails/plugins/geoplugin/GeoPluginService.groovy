@@ -1,9 +1,7 @@
 package org.grails.plugins.geoplugin
 
-import grails.transaction.Transactional
 import groovy.json.JsonSlurper
 
-@Transactional
 class GeoPluginService {
 
 

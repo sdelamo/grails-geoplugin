@@ -8,19 +8,29 @@ import spock.lang.Unroll
 @TestFor(GeoPluginService)
 class GeoPluginServiceSpec extends Specification {
 
-    void "test fetchGeoPluginResponseByIpAddress should return status code: #expectedResponseCode an #expectedCountryCode for #ipaddress"(String ipaddress, String expectedCountryCode, Integer expectedResponseCode) {
+    void "test fetchGeoPluginResponseByIpAddress should return status code: #expectedResponseCode for #ipaddress"(String ipaddress, Integer expectedResponseCode) {
         when:
         GeoPluginResponse rsp = service.fetchGeoPluginResponseByIpAddress(ipaddress)
 
         then:
         rsp.geopluginStatus == expectedResponseCode
+
+        where:
+        ipaddress       || expectedResponseCode
+        '88.12.40.19'   || 200
+        '127.0.0.1'     || 404
+    }
+
+    void "test fetchGeoPluginResponseByIpAddress should return country #expectedCountryCode for #ipaddress"(String ipaddress, String expectedCountryCode) {
+        when:
+        GeoPluginResponse rsp = service.fetchGeoPluginResponseByIpAddress(ipaddress)
+
+        then:
         rsp.geopluginCountryCode == expectedCountryCode
 
         where:
-        ipaddress       || expectedCountryCode | expectedResponseCode
-        '88.12.40.19'   || 'ES'                | 200
-        'rabbit'        || null                | 404
-        '88124019'      || null                | 404
-        '127.0.0.1'     || ''                  | 404
+        ipaddress       || expectedCountryCode
+        '88.12.40.19'   || 'ES'
+        '127.0.0.1'     || ''
     }
 }
