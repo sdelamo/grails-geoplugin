@@ -17,7 +17,7 @@ class GeoPluginServiceSpec extends Specification {
 
         where:
         ipaddress       || expectedResponseCode
-        '88.12.40.19'   || 200
+        '88.12.40.19'   || 404
         '127.0.0.1'     || 404
     }
 
