@@ -42,7 +42,7 @@ dependencies {
     console "org.grails:grails-console"
     profile "org.grails.profiles:plugin:3.1.5"
     provided "org.grails:grails-plugin-services"
-    provided "org.grails:grails-plugin-domain-class"
+    testCompile "org.grails:grails-plugin-domain-class"
     testCompile "org.grails:grails-plugin-testing"
 
     compile 'org.codehaus.groovy:groovy-json:2.4.6'
@@ -51,10 +51,10 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
 }
+
 grailsPublish {
-    // TODO: Provide values here
-    user = 'user'
-    key = 'key'
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
     githubSlug = 'sdelamo/grails-geoplugin'
     license {
         name = 'Apache-2.0'
@@ -64,4 +64,16 @@ grailsPublish {
     developers = [sdelamo:"Sergio del Amo"]
     portalUser = ""
     portalPassword = ""    
+}
+
+bintray {
+    pkg {
+        name = "$project.name"
+        issueTrackerUrl = "https://github.com/sdelamo/$project.name/issues"
+        vcsUrl = "https://github.com/sdelamo/$project.name"
+        version {
+            attributes = ['grails-plugin': "$project.group:$project.name"]
+            name = project.version
+        }
+    }
 }
