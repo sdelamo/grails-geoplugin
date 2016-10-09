@@ -8,7 +8,7 @@ class GrailsGeopluginGrailsPlugin extends Plugin {
     def grailsVersion = "3.2.0 > *"
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-        "grails-app/views/error.gsp"
+        "grails-app/views/error.gsp", 'GeoPlugin.paw'
     ]
 
     // TODO Fill in these fields
