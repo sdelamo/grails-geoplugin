@@ -57,7 +57,9 @@ task wrapper(type: Wrapper) {
 grailsPublish {
     user = System.getenv("BINTRAY_USER") ?: project.bintrayUser
     key = System.getenv("BINTRAY_KEY") ?: project.bintrayKey
-    key = System.getenv('BINTRAY_KEY')
+    portalUser = System.getenv("GRAILS_PORTAL_USER") ?: project.grailsPortalUser
+    portalPassword = System.getenv("GRAILS_PORTAL_PASSWORD") ?: project.grailsPortalPassword
+
     githubSlug = 'sdelamo/grails-geoplugin'
     license {
         name = 'Apache-2.0'
@@ -65,8 +67,7 @@ grailsPublish {
     title = "Grails GeoPlugin"
     desc = "Exposes a Grails service which queries the geoplugin api given an ip address"
     developers = [sdelamo:"Sergio del Amo"]
-    portalUser = System.getenv("GRAILS_PORTAL_USER") ?: project.grailsPortalUser
-    portalPassword = System.getenv("GRAILS_PORTAL_PASSWORD") ?: project.grailsPortalPassword
+
 }
 
 bintray {
