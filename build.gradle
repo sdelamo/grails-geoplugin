@@ -8,15 +8,17 @@ buildscript {
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.0"
     }
 }
 
 version "0.1"
 group 'org.grails.plugins'
 
-apply plugin:"idea"
-apply plugin:"org.grails.grails-plugin"
-apply plugin:"org.grails.grails-plugin-publish"
+apply plugin: "idea"
+apply plugin: "org.grails.grails-plugin"
+apply plugin: "org.grails.grails-plugin-publish"
+apply plugin: "com.jfrog.artifactory"
 
 ext {
     grailsVersion = project.grailsVersion
@@ -75,6 +77,20 @@ bintray {
         version {
             attributes = ['grails-plugin': "$project.group:$project.name"]
             name = project.version
+        }
+    }
+}
+
+artifactory {
+    contextUrl = 'http://oss.jfrog.org'
+    publish {
+        repository {
+            repoKey = 'oss-snapshot-local'
+            username = System.getenv("BINTRAY_USER") ?: project.bintrayUser
+            password = System.getenv("BINTRAY_KEY") ?: project.bintrayKey
+        }
+        defaults {
+            publications('maven')
         }
     }
 }
