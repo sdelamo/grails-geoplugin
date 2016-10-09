@@ -4,7 +4,6 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class GeoPluginResponse {
-
     String geopluginRequest
     Integer geopluginStatus
     String geopluginCredit
