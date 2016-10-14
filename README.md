@@ -17,7 +17,7 @@ Add plugin dependency to your `build.gradle`:
 ```groovy
 dependencies {
   ...
-  compile 'org.grails.plugins:grails-geo-plugin:0.3'
+  compile 'org.grails.plugins:grails-geo-plugin:0.5'
   ...
 }
 ```
