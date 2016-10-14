@@ -11,14 +11,16 @@ Grails 3 plugin which exposes a Grails service which queries the geoplugin api (
 
 
 # Installation
-
-Add plugin dependency to your `build.gradle`:
+Declare the plugin dependency in the build.gradle file, as shown here:
 
 ```groovy
+repositories {
+    ...
+    maven { url "http://dl.bintray.com/sdelamo/plugins" }
+}
 dependencies {
-  ...
-  compile 'org.grails.plugins:grails-geo-plugin:0.5'
-  ...
+    ...
+    compile 'org.grails.plugins:grails-geo-plugin:0.5'
 }
 ```
 
